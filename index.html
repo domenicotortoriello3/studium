@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studium — Il tuo piano di studio, su misura</title>
+<meta name="description" content="Studium trasforma i tuoi materiali e le tue scadenze in un piano di studio preciso, scientifico, fattibile. Gratis, senza registrazione.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ LANDING PAGE ============ -->
+<div id="landing" class="view active">
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-name">Studium</span>
+        <span class="brand-tag">MMXXVI</span>
+      </div>
+      <nav class="site-nav">
+        <a href="#metodo">Metodo</a>
+        <a href="#differenza">Differenza</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-overline">Pianificatore accademico · Gratuito · Senza registrazione</div>
+      <h1 class="hero-title">
+        Non un'altra<br>
+        <em>intelligenza artificiale</em>.<br>
+        Un metodo.
+      </h1>
+      <p class="hero-lead">
+        Carica i tuoi materiali, inserisci le date degli esami,
+        ricevi un piano di studio calibrato al minuto. Usa le stesse
+        tecniche dei migliori studenti: ripetizione dilazionata, richiamo
+        attivo, interleaving.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="showApp()">Crea il mio piano →</button>
+        <a href="#metodo" class="btn btn-ghost">Scopri il metodo</a>
+      </div>
+      <div class="hero-meta">
+        <span>◆ Nessun account</span>
+        <span>◆ Analizza PDF e foto</span>
+        <span>◆ Piano scaricabile</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto">
+    <div class="container">
+      <div class="manifesto-grid">
+        <div class="manifesto-num">I.</div>
+        <div class="manifesto-text">
+          <h2>Il problema con gli altri.</h2>
+          <p>
+            Le AI generiche ti restituiscono piani generici: «studia il capitolo 3».
+            Non sanno cosa contiene quel capitolo, non sanno quanto pesa al tuo esame,
+            non sanno che hai un intercorso fra quattro giorni. Producono liste.
+            Non strategie.
+          </p>
+        </div>
+      </div>
+      <div class="manifesto-grid">
+        <div class="manifesto-num">II.</div>
+        <div class="manifesto-text">
+          <h2>Cosa fa Studium.</h2>
+          <p>
+            Studium legge davvero i tuoi materiali. Pesa i capitoli, stima le ore
+            reali, distribuisce lo studio secondo la curva dell'oblio di Ebbinghaus.
+            Conosce il sistema universitario italiano: CFU, intercorso, sessioni,
+            orale contro scritto. Parla come un tutor esigente, non come un chatbot.
+          </p>
+        </div>
+      </div>
+      <div class="manifesto-grid">
+        <div class="manifesto-num">III.</div>
+        <div class="manifesto-text">
+          <h2>La promessa.</h2>
+          <p>
+            Un piano preciso, non generico. Fattibile, non ambizioso a vuoto.
+            Scientifico, non improvvisato. Se il tempo è poco, Studium te lo dice,
+            e propone cosa tagliare. Niente bugie pedagogiche.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METODO -->
+  <section id="metodo" class="method">
+    <div class="container">
+      <div class="section-overline">Capitolo II · Il metodo</div>
+      <h2 class="section-title">Quattro principi, nessun compromesso.</h2>
+
+      <div class="method-grid">
+        <div class="method-card">
+          <div class="method-num">01</div>
+          <h3>Ripetizione dilazionata</h3>
+          <p>Ogni argomento viene rivisto a 1, 3, 7 e 14 giorni. Non è un'opinione: è come funziona la memoria a lungo termine.</p>
+        </div>
+        <div class="method-card">
+          <div class="method-num">02</div>
+          <h3>Richiamo attivo</h3>
+          <p>Ogni sessione ha un'autoverifica concreta. Non basta leggere: devi saperlo riprodurre a voce alta.</p>
+        </div>
+        <div class="method-card">
+          <div class="method-num">03</div>
+          <h3>Interleaving</h3>
+          <p>Alternare argomenti nella stessa giornata aumenta la ritenzione del 40% rispetto a studiare a blocchi monolitici.</p>
+        </div>
+        <div class="method-card">
+          <div class="method-num">04</div>
+          <h3>Calibrazione al reale</h3>
+          <p>Il piano si basa sul volume reale dei tuoi materiali, non su stime astratte. Ogni ora è giustificata.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFFERENZA -->
+  <section id="differenza" class="compare">
+    <div class="container">
+      <div class="section-overline">Capitolo III · Differenze</div>
+      <h2 class="section-title">Studium vs. il resto.</h2>
+
+      <div class="compare-table">
+        <div class="compare-row compare-head">
+          <div></div>
+          <div>AI generiche</div>
+          <div class="compare-us">Studium</div>
+        </div>
+        <div class="compare-row">
+          <div>Legge i tuoi materiali</div>
+          <div>Risposte su prompt testuale</div>
+          <div class="compare-us">Analizza PDF, slide, foto di appunti</div>
+        </div>
+        <div class="compare-row">
+          <div>Conosce l'università italiana</div>
+          <div>No</div>
+          <div class="compare-us">Sì — CFU, intercorso, sessioni</div>
+        </div>
+        <div class="compare-row">
+          <div>Applica scienza cognitiva</div>
+          <div>Talvolta, se la chiedi</div>
+          <div class="compare-us">Sempre, per default</div>
+        </div>
+        <div class="compare-row">
+          <div>Dice se è impossibile farcela</div>
+          <div>Ti rassicura comunque</div>
+          <div class="compare-us">Sì — e propone un piano B</div>
+        </div>
+        <div class="compare-row">
+          <div>Piano adattato a ore e giorni reali</div>
+          <div>Generico</div>
+          <div class="compare-us">Calendario giorno per giorno</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL / QUOTE -->
+  <section class="quote-section">
+    <div class="container">
+      <blockquote>
+        «Non serve studiare di più.<br>Serve studiare nel modo giusto,<br>al momento giusto.»
+      </blockquote>
+      <div class="quote-attribution">— Principio fondante di Studium</div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <div class="section-overline">Capitolo IV · Domande</div>
+      <h2 class="section-title">Quello che chiedono tutti.</h2>
+
+      <div class="faq-list">
+        <details>
+          <summary>È davvero gratuito?</summary>
+          <p>Sì. Completamente. Non c'è registrazione, non c'è carta di credito, non raccogliamo dati personali. I materiali che carichi non vengono salvati da nessuna parte: vengono analizzati e scartati.</p>
+        </details>
+        <details>
+          <summary>Quali file posso caricare?</summary>
+          <p>PDF (slide, dispense, libri), immagini (foto di appunti, pagine di libri), testi semplici. Puoi caricarne quanti ne vuoi, anche tutti insieme.</p>
+        </details>
+        <details>
+          <summary>Quanto tempo ci mette a generare il piano?</summary>
+          <p>Tra i trenta secondi e i due minuti, a seconda della quantità di materiali e del numero di esami.</p>
+        </details>
+        <details>
+          <summary>Funziona anche per il liceo o per concorsi?</summary>
+          <p>Sì. È pensato per l'università italiana ma il metodo si adatta a qualunque studio strutturato: maturità, concorsi pubblici, certificazioni.</p>
+        </details>
+        <details>
+          <summary>E se sono già indietro con lo studio?</summary>
+          <p>È il caso più frequente, e quello in cui Studium dà il meglio. Ti dirà onestamente se è recuperabile e con quale strategia. A volte la risposta sarà dura.</p>
+        </details>
+        <details>
+          <summary>Posso salvare il piano?</summary>
+          <p>Certo: puoi scaricarlo come testo, stamparlo, copiarlo nel tuo calendario. Il piano è tuo.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <h2>Pronto a studiare davvero?</h2>
+      <p>Due minuti per caricare tutto. Un piano di studio vero in cambio.</p>
+      <button class="btn btn-primary btn-large" onclick="showApp()">Inizia ora →</button>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Studium · Pianificatore Accademico</span>
+      <span>Propulso da Claude di Anthropic</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ============ APP ============ -->
+<div id="app" class="view">
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand" onclick="showLanding()" style="cursor:pointer">
+        <span class="brand-name">Studium</span>
+        <span class="brand-tag">MMXXVI</span>
+      </div>
+      <nav class="site-nav">
+        <a href="#" onclick="showLanding(); return false;">← Torna alla home</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Step indicator -->
+  <div class="step-bar">
+    <div class="container step-bar-inner">
+      <div class="step" data-step="1"><span class="step-num">1</span><span>Materiali</span></div>
+      <div class="step-sep">→</div>
+      <div class="step" data-step="2"><span class="step-num">2</span><span>Scadenze</span></div>
+      <div class="step-sep">→</div>
+      <div class="step" data-step="3"><span class="step-num">3</span><span>Preferenze</span></div>
+      <div class="step-sep">→</div>
+      <div class="step" data-step="4"><span class="step-num">4</span><span>Piano</span></div>
+    </div>
+  </div>
+
+  <main class="container main-content">
+
+    <!-- STEP 1: FILES -->
+    <section id="step-1" class="step-panel active">
+      <div class="step-header">
+        <div class="section-overline">Capitolo I</div>
+        <h2 class="section-title">I tuoi materiali.</h2>
+        <p class="step-intro">
+          Carica tutto ciò che dovrai studiare: slide del professore, dispense,
+          foto degli appunti, libri in PDF. Verranno analizzati per costruire
+          un piano calibrato sul volume reale del lavoro.
+        </p>
+      </div>
+
+      <div class="dropzone" id="dropzone">
+        <div class="dropzone-icon">↑</div>
+        <p class="dropzone-text">Trascina i file qui o clicca per selezionarli</p>
+        <p class="dropzone-meta">PDF · Immagini · Testi — più file insieme</p>
+        <input type="file" id="file-input" multiple accept=".pdf,image/*,.txt,.md" style="display:none">
+      </div>
+
+      <div id="file-list" class="file-list"></div>
+
+      <div class="step-actions">
+        <span class="step-hint" id="files-hint">Puoi proseguire anche senza allegare file</span>
+        <button class="btn btn-primary" onclick="goToStep(2)">Procedi →</button>
+      </div>
+    </section>
+
+    <!-- STEP 2: EXAMS -->
+    <section id="step-2" class="step-panel">
+      <div class="step-header">
+        <div class="section-overline">Capitolo II</div>
+        <h2 class="section-title">Le scadenze.</h2>
+        <p class="step-intro">
+          Inserisci gli esami e le date d'intercorso. Specifica il livello di
+          partenza per ciascuno: è il parametro più importante per calibrare
+          i tempi.
+        </p>
+      </div>
+
+      <div id="exams-list" class="exams-list"></div>
+
+      <button class="btn btn-ghost btn-add" onclick="addExam()">+ Aggiungi esame</button>
+
+      <div class="step-actions">
+        <button class="btn btn-text" onclick="goToStep(1)">← Indietro</button>
+        <button class="btn btn-primary" id="btn-to-3" onclick="goToStep(3)">Procedi →</button>
+      </div>
+    </section>
+
+    <!-- STEP 3: PREFERENCES -->
+    <section id="step-3" class="step-panel">
+      <div class="step-header">
+        <div class="section-overline">Capitolo III</div>
+        <h2 class="section-title">Il tuo ritmo.</h2>
+        <p class="step-intro">
+          Meglio un piano fattibile al cento per cento che uno ambizioso
+          abbandonato dopo tre giorni. Sii realista.
+        </p>
+      </div>
+
+      <div class="prefs-card">
+        <div class="prefs-grid">
+          <div class="prefs-field">
+            <label>Inizio studio</label>
+            <input type="date" id="pref-startDate">
+          </div>
+          <div class="prefs-field">
+            <label>Ore al giorno · <strong id="hoursLabel">4h</strong></label>
+            <input type="range" id="pref-hours" min="1" max="10" value="4">
+          </div>
+          <div class="prefs-field">
+            <label>Giorni a settimana · <strong id="daysLabel">6</strong></label>
+            <input type="range" id="pref-days" min="3" max="7" value="6">
+          </div>
+          <div class="prefs-field">
+            <label>Giorno di riposo</label>
+            <select id="pref-rest">
+              <option>domenica</option>
+              <option>sabato</option>
+              <option>lunedì</option>
+              <option>nessuno</option>
+            </select>
+          </div>
+          <div class="prefs-field">
+            <label>Ambito di studio</label>
+            <select id="pref-context">
+              <option value="università">Università</option>
+              <option value="liceo">Liceo / maturità</option>
+              <option value="concorso">Concorso pubblico</option>
+              <option value="certificazione">Certificazione</option>
+              <option value="altro">Altro</option>
+            </select>
+          </div>
+          <div class="prefs-field">
+            <label>Livello di stress attuale</label>
+            <select id="pref-stress">
+              <option value="rilassato">Rilassato, c'è tempo</option>
+              <option value="normale">Normale</option>
+              <option value="teso">Teso, sono indietro</option>
+              <option value="panico">Panico totale</option>
+            </select>
+          </div>
+        </div>
+        <div class="prefs-field prefs-full">
+          <label>Note e vincoli</label>
+          <textarea id="pref-notes" rows="4" placeholder="Lavoro il martedì pomeriggio, tirocinio il giovedì, difficoltà con la matematica, tendo a procrastinare..."></textarea>
+        </div>
+      </div>
+
+      <div id="error-box" class="error-box" style="display:none"></div>
+
+      <div class="step-actions">
+        <button class="btn btn-text" onclick="goToStep(2)">← Indietro</button>
+        <button class="btn btn-primary btn-large" id="btn-generate" onclick="generatePlan()">
+          <span class="btn-text-content">✦ Genera il piano</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- STEP 4: PLAN -->
+    <section id="step-4" class="step-panel">
+      <div id="loading-state" style="display:none">
+        <div class="loading-container">
+          <div class="loader"></div>
+          <p class="loading-title">Studium sta pensando.</p>
+          <p class="loading-text" id="loading-stage">Analisi dei materiali in corso…</p>
+        </div>
+      </div>
+
+      <div id="plan-content" style="display:none"></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Studium · Pianificatore Accademico</span>
+      <span>Propulso da Claude di Anthropic</span>
+    </div>
+  </footer>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

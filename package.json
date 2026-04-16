@@ -1,0 +1,9 @@
+{
+  "name": "studium",
+  "version": "1.0.0",
+  "description": "Studium — Pianificatore accademico basato su Claude",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
