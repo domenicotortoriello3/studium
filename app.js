@@ -15,11 +15,19 @@ const state = {
   plan: null
 };
 
+// Limiti (Vercel Hobby plan: max 4.5MB per request)
+const MAX_FILE_SIZE = 3 * 1024 * 1024;       // 3MB per singolo file
+const MAX_TOTAL_SIZE = 3.5 * 1024 * 1024;    // 3.5MB totali
+
 // ====== UTILS ======
 function escapeHTML(s) {
   return String(s || "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
 function escapeAttr(s) { return escapeHTML(s); }
+
+function getTotalRawSize() {
+  return state.files.reduce((sum, f) => sum + (f.size || 0), 0);
+}
 
 // ====== VIEW SWITCH ======
 function showApp() {
@@ -66,9 +74,16 @@ function fileToBase64(file) {
 
 async function handleFiles(fileList) {
   const arr = Array.from(fileList);
+  const currentTotal = getTotalRawSize();
+  let addedSize = 0;
+
   for (const file of arr) {
-    if (file.size > 15 * 1024 * 1024) {
-      alert('Il file "' + file.name + '" è troppo grande (max 15MB).');
+    if (file.size > MAX_FILE_SIZE) {
+      alert('Il file "' + file.name + '" è troppo grande (' + (file.size/1024/1024).toFixed(1) + 'MB).\n\nMassimo: 3MB per file.\n\nSuggerimento: comprimi il PDF su ilovepdf.com o riduci la risoluzione delle foto.');
+      continue;
+    }
+    if (currentTotal + addedSize + file.size > MAX_TOTAL_SIZE) {
+      alert('Hai raggiunto il limite totale (3.5MB).\n\nIl file "' + file.name + '" non è stato aggiunto.\n\nRimuovi qualche altro file per far spazio.');
       continue;
     }
     try {
@@ -80,6 +95,7 @@ async function handleFiles(fileList) {
         mimeType: file.type || "application/octet-stream",
         base64: base64.split(",")[1]
       });
+      addedSize += file.size;
     } catch (err) {
       console.error("Errore caricamento file:", err);
     }
@@ -93,10 +109,11 @@ function renderFiles() {
   if (!list || !hint) return;
   if (state.files.length === 0) {
     list.innerHTML = "";
-    hint.textContent = "Puoi proseguire anche senza allegare file";
+    hint.textContent = "Puoi proseguire anche senza allegare file · Max 3.5MB totali";
     return;
   }
-  hint.textContent = state.files.length + " materiali pronti per l'analisi";
+  const totalMB = (getTotalRawSize() / 1024 / 1024).toFixed(2);
+  hint.textContent = state.files.length + " file · " + totalMB + "MB / 3.5MB";
   list.innerHTML = state.files.map(f =>
     '<div class="file-item">' +
       '<div class="file-item-info">' +
@@ -233,6 +250,10 @@ async function generatePlan() {
 
     clearInterval(stageInt);
 
+    if (res.status === 413) {
+      throw new Error("I file caricati sono troppo grandi (massimo 3.5MB totali). Rimuovi o comprimi qualche file e riprova.");
+    }
+
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
       throw new Error(err.error || ("Errore del server (" + res.status + ")"));
@@ -251,7 +272,7 @@ async function generatePlan() {
     const errorBox = document.getElementById("error-box");
     if (errorBox) {
       errorBox.style.display = "block";
-      errorBox.textContent = "Errore: " + err.message + ". Riprova tra poco.";
+      errorBox.textContent = "Errore: " + err.message;
     }
   }
 }
@@ -382,7 +403,7 @@ function downloadPlan() {
     c += "\n\nCONSIGLI\n" + "=".repeat(60) + "\n";
     p.tips.forEach((t, i) => c += (i+1) + ". " + t + "\n");
   }
-  c += "\n\n— Generato da Studium · studium.vercel.app —\n";
+  c += "\n\n— Generato da Studium · studium-gamma.vercel.app —\n";
 
   const blob = new Blob([c], { type: "text/plain;charset=utf-8" });
   const url = URL.createObjectURL(blob);
@@ -395,7 +416,7 @@ function downloadPlan() {
   URL.revokeObjectURL(url);
 }
 
-// ====== ESPONI FUNZIONI GLOBALMENTE (fix compatibilità) ======
+// ====== ESPONI FUNZIONI GLOBALMENTE ======
 window.showApp = showApp;
 window.showLanding = showLanding;
 window.goToStep = goToStep;
@@ -409,7 +430,6 @@ window.resetAll = resetAll;
 
 // ====== INIT ON DOM READY ======
 document.addEventListener("DOMContentLoaded", function() {
-  // File upload listeners
   const dropzone = document.getElementById("dropzone");
   const fileInput = document.getElementById("file-input");
   if (dropzone && fileInput) {
@@ -424,7 +444,6 @@ document.addEventListener("DOMContentLoaded", function() {
     fileInput.addEventListener("change", e => handleFiles(e.target.files));
   }
 
-  // Preferences listeners
   const phInput = document.getElementById("pref-hours");
   if (phInput) phInput.addEventListener("input", e => {
     state.prefs.hours = parseInt(e.target.value);
