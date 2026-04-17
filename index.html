@@ -9,6 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<!-- jsPDF per il download del piano in PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
@@ -39,7 +41,7 @@
       </h1>
       <p class="hero-lead">
         Carica i tuoi materiali, inserisci le date degli esami,
-        ricevi un piano di studio calibrato al minuto. Usa le stesse
+        ricevi un piano di studio calibrato al minuto. Le stesse
         tecniche dei migliori studenti: ripetizione dilazionata, richiamo
         attivo, interleaving.
       </p>
@@ -50,7 +52,7 @@
       <div class="hero-meta">
         <span>◆ Nessun account</span>
         <span>◆ Analizza PDF e foto</span>
-        <span>◆ Piano scaricabile</span>
+        <span>◆ Piano in PDF</span>
       </div>
     </div>
   </section>
@@ -116,7 +118,7 @@
         <div class="method-card">
           <div class="method-num">03</div>
           <h3>Interleaving</h3>
-          <p>Alternare argomenti nella stessa giornata aumenta la ritenzione del 40% rispetto a studiare a blocchi monolitici.</p>
+          <p>Alternare argomenti nella stessa giornata aumenta la ritenzione rispetto a studiare a blocchi monolitici.</p>
         </div>
         <div class="method-card">
           <div class="method-num">04</div>
@@ -131,38 +133,36 @@
   <section id="differenza" class="compare">
     <div class="container">
       <div class="section-overline">Capitolo III · Differenze</div>
-      <h2 class="section-title">Studium vs. il resto.</h2>
+      <h2 class="section-title">Studium contro tutti gli altri.</h2>
 
-      <div class="compare-table">
-        <div class="compare-row compare-head">
-          <div></div>
-          <div>AI generiche</div>
-          <div class="compare-us">Studium</div>
+      <div class="vs-columns">
+        <div class="vs-col vs-others">
+          <div class="vs-col-head">
+            <span class="vs-col-label">AI GENERICHE</span>
+            <span class="vs-col-icon">✕</span>
+          </div>
+          <ul class="vs-list">
+            <li>Ignorano i materiali reali: rispondono al testo del prompt</li>
+            <li>Nessuna conoscenza del sistema accademico italiano</li>
+            <li>Applicano scienza cognitiva solo se esplicitamente richiesto</li>
+            <li>Ti rassicurano sempre, anche quando non ce la fai</li>
+            <li>Piano generico: «studia il capitolo»</li>
+            <li>Non considerano l'obiettivo del voto</li>
+          </ul>
         </div>
-        <div class="compare-row">
-          <div>Legge i tuoi materiali</div>
-          <div>Risposte su prompt testuale</div>
-          <div class="compare-us">Analizza PDF, slide, foto di appunti</div>
-        </div>
-        <div class="compare-row">
-          <div>Conosce l'università italiana</div>
-          <div>No</div>
-          <div class="compare-us">Sì — CFU, intercorso, sessioni</div>
-        </div>
-        <div class="compare-row">
-          <div>Applica scienza cognitiva</div>
-          <div>Talvolta, se la chiedi</div>
-          <div class="compare-us">Sempre, per default</div>
-        </div>
-        <div class="compare-row">
-          <div>Dice se è impossibile farcela</div>
-          <div>Ti rassicura comunque</div>
-          <div class="compare-us">Sì — e propone un piano B</div>
-        </div>
-        <div class="compare-row">
-          <div>Piano adattato a ore e giorni reali</div>
-          <div>Generico</div>
-          <div class="compare-us">Calendario giorno per giorno</div>
+        <div class="vs-col vs-us">
+          <div class="vs-col-head">
+            <span class="vs-col-label">STUDIUM</span>
+            <span class="vs-col-icon">✓</span>
+          </div>
+          <ul class="vs-list">
+            <li>Legge PDF, slide, foto di appunti, testi scritti a mano</li>
+            <li>Conosce CFU, intercorso, sessioni, scritto vs orale</li>
+            <li>Spaced repetition, active recall e interleaving sempre attivi</li>
+            <li>Ti dice la verità: se è impossibile, propone un piano B</li>
+            <li>Piano specifico: «pagine 40-55, concetto X, obiettivo Y»</li>
+            <li>Adatta strategia e intensità al voto che vuoi ottenere</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -191,7 +191,7 @@
         </details>
         <details>
           <summary>Quali file posso caricare?</summary>
-          <p>PDF (slide, dispense, libri), immagini (foto di appunti, pagine di libri), testi semplici. Puoi caricarne quanti ne vuoi, anche tutti insieme.</p>
+          <p>PDF (slide, dispense, libri), immagini (foto di appunti, pagine di libri), testi semplici. Puoi anche scrivere direttamente gli argomenti se non hai file.</p>
         </details>
         <details>
           <summary>Quanto tempo ci mette a generare il piano?</summary>
@@ -207,7 +207,7 @@
         </details>
         <details>
           <summary>Posso salvare il piano?</summary>
-          <p>Certo: puoi scaricarlo come testo, stamparlo, copiarlo nel tuo calendario. Il piano è tuo.</p>
+          <p>Certo: puoi scaricarlo come PDF, stamparlo, copiarlo nel tuo calendario. Il piano è tuo.</p>
         </details>
       </div>
     </div>
@@ -224,8 +224,21 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <span>Studium · Pianificatore Accademico</span>
-      <span>Propulso da Claude di Anthropic</span>
+      <div class="footer-col">
+        <div class="footer-title">Studium</div>
+        <div class="footer-sub">Pianificatore accademico scientifico</div>
+      </div>
+      <div class="footer-col footer-col-center">
+        <div class="footer-credits">
+          Creato da <strong>Domenico Tortoriello</strong><br>
+          <span>Studente di Ingegneria Elettrica</span><br>
+          <span>Università Federico II · Napoli</span>
+        </div>
+      </div>
+      <div class="footer-col footer-col-right">
+        <div class="footer-sub">Propulso da Claude</div>
+        <div class="footer-sub">Anthropic · MMXXVI</div>
+      </div>
     </div>
   </footer>
 </div>
@@ -249,7 +262,7 @@
     <div class="container step-bar-inner">
       <div class="step" data-step="1"><span class="step-num">1</span><span>Materiali</span></div>
       <div class="step-sep">→</div>
-      <div class="step" data-step="2"><span class="step-num">2</span><span>Scadenze</span></div>
+      <div class="step" data-step="2"><span class="step-num">2</span><span>Esami</span></div>
       <div class="step-sep">→</div>
       <div class="step" data-step="3"><span class="step-num">3</span><span>Preferenze</span></div>
       <div class="step-sep">→</div>
@@ -259,29 +272,80 @@
 
   <main class="container main-content">
 
-    <!-- STEP 1: FILES -->
+    <!-- STEP 1: FILES + TESTO MANUALE -->
     <section id="step-1" class="step-panel active">
       <div class="step-header">
         <div class="section-overline">Capitolo I</div>
         <h2 class="section-title">I tuoi materiali.</h2>
         <p class="step-intro">
           Carica tutto ciò che dovrai studiare: slide del professore, dispense,
-          foto degli appunti, libri in PDF. Verranno analizzati per costruire
-          un piano calibrato sul volume reale del lavoro.
+          foto degli appunti, libri in PDF. Oppure scrivi direttamente gli argomenti
+          se non hai materiali digitali.
         </p>
       </div>
 
-      <div class="dropzone" id="dropzone">
-        <div class="dropzone-icon">↑</div>
-        <p class="dropzone-text">Trascina i file qui o clicca per selezionarli</p>
-        <p class="dropzone-meta">PDF · Immagini · Testi — più file insieme</p>
-        <input type="file" id="file-input" multiple accept=".pdf,image/*,.txt,.md" style="display:none">
+      <!-- Sotto-tab: file o testo -->
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="files" onclick="switchTab('files')">Carica file</button>
+        <button class="tab-btn" data-tab="text" onclick="switchTab('text')">Scrivi argomenti</button>
       </div>
 
-      <div id="file-list" class="file-list"></div>
+      <!-- TAB FILE -->
+      <div id="tab-files" class="tab-panel active">
+        <div class="dropzone" id="dropzone">
+          <div class="dropzone-icon">↑</div>
+          <p class="dropzone-text">Trascina i file qui o clicca per selezionarli</p>
+          <p class="dropzone-meta">PDF · Immagini · Testi</p>
+          <input type="file" id="file-input" multiple accept=".pdf,image/*,.txt,.md" style="display:none">
+        </div>
+        <div id="file-list" class="file-list"></div>
+
+        <!-- Box compressione PDF -->
+        <div class="compress-box">
+          <div class="compress-box-head">
+            <div>
+              <div class="compress-box-title">File troppo grande? Comprimilo.</div>
+              <div class="compress-box-sub">I libri PDF pesano fino a 50MB. Comprimendoli diventano 2-3MB in pochi secondi, senza perdere qualità di lettura. Le immagini invece vengono compresse automaticamente da Studium.</div>
+            </div>
+            <a href="https://www.ilovepdf.com/it/comprimere-pdf" target="_blank" rel="noopener" class="btn-compress">
+              <span>Comprimi PDF</span>
+              <span class="btn-compress-icon">↗</span>
+            </a>
+          </div>
+          <details class="compress-guide">
+            <summary>Come si comprime un PDF? (guida in 4 passi)</summary>
+            <ol class="compress-steps">
+              <li><strong>Clicca "Comprimi PDF"</strong> qui sopra. Si apre il sito ilovepdf.com in una nuova scheda.</li>
+              <li><strong>Trascina il tuo PDF</strong> dentro il rettangolo rosso al centro del sito, oppure clicca "Seleziona file PDF".</li>
+              <li><strong>Scegli "Compressione consigliata"</strong> (è quella di default) e clicca il pulsante rosso "Comprimi PDF" in basso a destra.</li>
+              <li><strong>Scarica il file compresso</strong> e caricalo qui su Studium. Normalmente passa da 30MB a 2-3MB.</li>
+            </ol>
+            <p class="compress-note">Totalmente gratuito, non serve registrarsi. Il PDF rimane privato, non viene condiviso.</p>
+          </details>
+        </div>
+      </div>
+
+      <!-- TAB TESTO -->
+      <div id="tab-text" class="tab-panel">
+        <label class="field-label">Scrivi qui gli argomenti che dovrai studiare</label>
+        <textarea id="manual-topics" rows="10" placeholder="Esempio:
+
+CAPITOLO 1 — Analisi matematica
+- Limiti di funzione
+- Continuità
+- Derivate
+
+CAPITOLO 2 — Integrali
+- Integrali indefiniti
+- Integrazione per parti
+- Integrali definiti
+
+..."></textarea>
+        <p class="step-hint" style="margin-top:0.5rem">Più sei specifico, più il piano sarà preciso. Elenca capitoli, argomenti, paragrafi.</p>
+      </div>
 
       <div class="step-actions">
-        <span class="step-hint" id="files-hint">Puoi proseguire anche senza allegare file</span>
+        <span class="step-hint" id="files-hint">Puoi caricare file, scrivere argomenti, o entrambi</span>
         <button class="btn btn-primary" onclick="goToStep(2)">Procedi →</button>
       </div>
     </section>
@@ -290,11 +354,10 @@
     <section id="step-2" class="step-panel">
       <div class="step-header">
         <div class="section-overline">Capitolo II</div>
-        <h2 class="section-title">Le scadenze.</h2>
+        <h2 class="section-title">Gli esami.</h2>
         <p class="step-intro">
-          Inserisci gli esami e le date d'intercorso. Specifica il livello di
-          partenza per ciascuno: è il parametro più importante per calibrare
-          i tempi.
+          Per ogni esame specifica materia, data, modalità, il tuo livello di
+          preparazione attuale e l'obiettivo che ti poni. Ogni dettaglio cambia il piano.
         </p>
       </div>
 
@@ -327,19 +390,23 @@
           </div>
           <div class="prefs-field">
             <label>Ore al giorno · <strong id="hoursLabel">4h</strong></label>
-            <input type="range" id="pref-hours" min="1" max="10" value="4">
+            <input type="range" id="pref-hours" min="1" max="12" value="4">
           </div>
           <div class="prefs-field">
             <label>Giorni a settimana · <strong id="daysLabel">6</strong></label>
-            <input type="range" id="pref-days" min="3" max="7" value="6">
+            <input type="range" id="pref-days" min="2" max="7" value="6">
           </div>
           <div class="prefs-field">
-            <label>Giorno di riposo</label>
+            <label>Giorno di riposo preferito</label>
             <select id="pref-rest">
-              <option>domenica</option>
-              <option>sabato</option>
-              <option>lunedì</option>
-              <option>nessuno</option>
+              <option value="domenica">Domenica</option>
+              <option value="lunedì">Lunedì</option>
+              <option value="martedì">Martedì</option>
+              <option value="mercoledì">Mercoledì</option>
+              <option value="giovedì">Giovedì</option>
+              <option value="venerdì">Venerdì</option>
+              <option value="sabato">Sabato</option>
+              <option value="nessuno">Nessuno</option>
             </select>
           </div>
           <div class="prefs-field">
@@ -387,7 +454,6 @@
           <p class="loading-text" id="loading-stage">Analisi dei materiali in corso…</p>
         </div>
       </div>
-
       <div id="plan-content" style="display:none"></div>
     </section>
 
@@ -395,8 +461,19 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <span>Studium · Pianificatore Accademico</span>
-      <span>Propulso da Claude di Anthropic</span>
+      <div class="footer-col">
+        <div class="footer-title">Studium</div>
+        <div class="footer-sub">Pianificatore accademico</div>
+      </div>
+      <div class="footer-col footer-col-center">
+        <div class="footer-credits">
+          Creato da <strong>Domenico Tortoriello</strong><br>
+          <span>Ingegneria Elettrica · Federico II</span>
+        </div>
+      </div>
+      <div class="footer-col footer-col-right">
+        <div class="footer-sub">Propulso da Claude</div>
+      </div>
     </div>
   </footer>
 </div>
