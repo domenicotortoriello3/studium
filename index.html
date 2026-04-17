@@ -3,56 +3,253 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Studium — Il tuo piano di studio, su misura</title>
-<meta name="description" content="Studium trasforma i tuoi materiali e le tue scadenze in un piano di studio preciso, scientifico, fattibile. Gratis, senza registrazione.">
+<title>Studium — Il pianificatore di studio scientifico</title>
+<meta name="description" content="Studium trasforma materiali, esami e obiettivi in un piano di studio calibrato al minuto. Basato su ripetizione dilazionata, richiamo attivo, interleaving.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<!-- jsPDF per il download del piano in PDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
 <!-- ============ LANDING PAGE ============ -->
 <div id="landing" class="view active">
+  <!-- TOPBAR — nome Domenico sempre visibile -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-left">
+        <span class="topbar-label">Un progetto di</span>
+        <strong>Domenico Tortoriello</strong>
+        <span class="topbar-sep">·</span>
+        <span class="topbar-detail">Ingegneria Elettrica · Università Federico II, Napoli</span>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-detail">Anno accademico MMXXVI</span>
+      </div>
+    </div>
+  </div>
+
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
-        <span class="brand-name">Studium</span>
-        <span class="brand-tag">MMXXVI</span>
+        <span class="brand-mark">S</span>
+        <div>
+          <div class="brand-name">Studium</div>
+          <div class="brand-sub">Il pianificatore scientifico</div>
+        </div>
       </div>
       <nav class="site-nav">
-        <a href="#metodo">Metodo</a>
-        <a href="#differenza">Differenza</a>
+        <a href="#metodo">Il metodo</a>
+        <a href="#scienza">La scienza</a>
+        <a href="#confronto">Il confronto</a>
         <a href="#faq">FAQ</a>
+        <button class="btn-nav-cta" onclick="showApp()">Inizia →</button>
       </nav>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="container">
-      <div class="hero-overline">Pianificatore accademico · Gratuito · Senza registrazione</div>
-      <h1 class="hero-title">
-        Non un'altra<br>
-        <em>intelligenza artificiale</em>.<br>
-        Un metodo.
-      </h1>
-      <p class="hero-lead">
-        Carica i tuoi materiali, inserisci le date degli esami,
-        ricevi un piano di studio calibrato al minuto. Le stesse
-        tecniche dei migliori studenti: ripetizione dilazionata, richiamo
-        attivo, interleaving.
-      </p>
-      <div class="hero-actions">
-        <button class="btn btn-primary" onclick="showApp()">Crea il mio piano →</button>
-        <a href="#metodo" class="btn btn-ghost">Scopri il metodo</a>
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-tag">Pianificatore accademico · Gratis · Senza registrazione</div>
+        <h1 class="hero-title">
+          Studia meno.<br>
+          <em>Ricorda di più.</em><br>
+          Supera l'esame.
+        </h1>
+        <p class="hero-lead">
+          Studium non è un'altra intelligenza artificiale generica. È un sistema che applica
+          le leggi della memoria umana — ripetizione dilazionata, richiamo attivo, interleaving —
+          ai tuoi materiali reali, ai tuoi tempi reali, al tuo obiettivo di voto.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-large" onclick="showApp()">
+            <span>Crea il mio piano</span>
+            <span class="btn-arrow">→</span>
+          </button>
+          <button class="btn btn-secondary" onclick="showModify()">
+            <span>Ho già un piano, lo modifico</span>
+          </button>
+        </div>
+        <div class="hero-badges">
+          <div class="hero-badge">
+            <span class="hero-badge-icon">◆</span>
+            <div>
+              <div class="hero-badge-title">PDF, foto, testi</div>
+              <div class="hero-badge-sub">Studium legge i tuoi materiali</div>
+            </div>
+          </div>
+          <div class="hero-badge">
+            <span class="hero-badge-icon">◆</span>
+            <div>
+              <div class="hero-badge-title">Calibrato al voto</div>
+              <div class="hero-badge-sub">Passare o prendere 30: cambia tutto</div>
+            </div>
+          </div>
+          <div class="hero-badge">
+            <span class="hero-badge-icon">◆</span>
+            <div>
+              <div class="hero-badge-title">Onestà brutale</div>
+              <div class="hero-badge-sub">Se non ce la fai, te lo dice</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="hero-meta">
-        <span>◆ Nessun account</span>
-        <span>◆ Analizza PDF e foto</span>
-        <span>◆ Piano in PDF</span>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-label">ESEMPIO · Piano di 14 giorni</div>
+          <div class="mini-calendar">
+            <div class="mini-week">
+              <div class="mini-day mini-study"><span>Lun</span><div class="mini-bar" style="height:70%"></div></div>
+              <div class="mini-day mini-study"><span>Mar</span><div class="mini-bar" style="height:85%"></div></div>
+              <div class="mini-day mini-study"><span>Mer</span><div class="mini-bar" style="height:60%"></div></div>
+              <div class="mini-day mini-study"><span>Gio</span><div class="mini-bar" style="height:75%"></div></div>
+              <div class="mini-day mini-study"><span>Ven</span><div class="mini-bar" style="height:90%"></div></div>
+              <div class="mini-day mini-light"><span>Sab</span><div class="mini-bar" style="height:40%"></div></div>
+              <div class="mini-day mini-rest"><span>Dom</span><div class="mini-rest-dot"></div></div>
+            </div>
+            <div class="mini-week">
+              <div class="mini-day mini-review"><span>Lun</span><div class="mini-bar" style="height:55%"></div></div>
+              <div class="mini-day mini-study"><span>Mar</span><div class="mini-bar" style="height:80%"></div></div>
+              <div class="mini-day mini-study"><span>Mer</span><div class="mini-bar" style="height:95%"></div></div>
+              <div class="mini-day mini-review"><span>Gio</span><div class="mini-bar" style="height:65%"></div></div>
+              <div class="mini-day mini-review"><span>Ven</span><div class="mini-bar" style="height:50%"></div></div>
+              <div class="mini-day mini-review"><span>Sab</span><div class="mini-bar" style="height:70%"></div></div>
+              <div class="mini-day mini-exam"><span>Esame</span><div class="mini-exam-dot">!</div></div>
+            </div>
+          </div>
+          <div class="mini-legend">
+            <span><span class="mini-dot dot-study"></span>Studio</span>
+            <span><span class="mini-dot dot-review"></span>Ripasso</span>
+            <span><span class="mini-dot dot-rest"></span>Riposo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENZA — con grafici -->
+  <section id="scienza" class="science">
+    <div class="container">
+      <div class="section-overline">I · La scienza</div>
+      <h2 class="section-title">Il tuo cervello <em>dimentica</em>.<br>Studium lo sa.</h2>
+      <p class="section-lead">
+        Nel 1885 lo psicologo Hermann Ebbinghaus misurò quanto velocemente dimentichiamo
+        ciò che impariamo. La sua curva è una legge fondamentale della memoria, confermata
+        da oltre un secolo di ricerca. Chi studia male, la ignora. Studium la combatte.
+      </p>
+
+      <div class="science-grid">
+        <!-- Grafico 1: curva oblio -->
+        <div class="science-card">
+          <div class="science-card-head">
+            <div class="science-card-num">01</div>
+            <div class="science-card-title">La curva dell'oblio</div>
+          </div>
+          <div class="chart-wrap">
+            <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" class="chart-svg" preserveAspectRatio="xMidYMid meet">
+              <!-- Griglia -->
+              <line x1="50" y1="200" x2="380" y2="200" stroke="#d6d3d1" stroke-width="1"/>
+              <line x1="50" y1="30" x2="50" y2="200" stroke="#d6d3d1" stroke-width="1"/>
+
+              <!-- Etichette asse Y -->
+              <text x="42" y="35" text-anchor="end" font-size="10" fill="#78716c" font-family="Inter">100%</text>
+              <text x="42" y="120" text-anchor="end" font-size="10" fill="#78716c" font-family="Inter">50%</text>
+              <text x="42" y="205" text-anchor="end" font-size="10" fill="#78716c" font-family="Inter">0%</text>
+
+              <!-- Etichette asse X -->
+              <text x="50" y="220" text-anchor="middle" font-size="10" fill="#78716c" font-family="Inter">Oggi</text>
+              <text x="130" y="220" text-anchor="middle" font-size="10" fill="#78716c" font-family="Inter">1 g</text>
+              <text x="210" y="220" text-anchor="middle" font-size="10" fill="#78716c" font-family="Inter">3 g</text>
+              <text x="290" y="220" text-anchor="middle" font-size="10" fill="#78716c" font-family="Inter">7 g</text>
+              <text x="370" y="220" text-anchor="middle" font-size="10" fill="#78716c" font-family="Inter">14 g</text>
+
+              <!-- Curva oblio -->
+              <path d="M 50 30 Q 90 100 130 140 Q 180 175 230 188 Q 290 194 380 198"
+                    fill="none" stroke="#991b1b" stroke-width="2.5" stroke-linecap="round"/>
+
+              <!-- Area sotto curva -->
+              <path d="M 50 30 Q 90 100 130 140 Q 180 175 230 188 Q 290 194 380 198 L 380 200 L 50 200 Z"
+                    fill="url(#redGrad)" opacity="0.15"/>
+
+              <defs>
+                <linearGradient id="redGrad" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#991b1b"/>
+                  <stop offset="100%" stop-color="#991b1b" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+
+              <!-- Punti chiave -->
+              <circle cx="50" cy="30" r="4" fill="#991b1b"/>
+              <circle cx="130" cy="140" r="3" fill="#991b1b"/>
+              <circle cx="230" cy="188" r="3" fill="#991b1b"/>
+              <circle cx="380" cy="198" r="3" fill="#991b1b"/>
+            </svg>
+          </div>
+          <p class="science-card-desc">
+            Dopo <strong>1 solo giorno</strong> dimentichi il <strong>70%</strong> di ciò che hai studiato.
+            Dopo una settimana, oltre il 90%. È così che funziona la mente umana.
+          </p>
+        </div>
+
+        <!-- Grafico 2: con vs senza studium -->
+        <div class="science-card science-card-featured">
+          <div class="science-card-head">
+            <div class="science-card-num">02</div>
+            <div class="science-card-title">Con Studium · Senza Studium</div>
+          </div>
+          <div class="chart-wrap">
+            <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" class="chart-svg" preserveAspectRatio="xMidYMid meet">
+              <!-- Griglia -->
+              <line x1="50" y1="200" x2="380" y2="200" stroke="#d6d3d1" stroke-width="1"/>
+              <line x1="50" y1="30" x2="50" y2="200" stroke="#d6d3d1" stroke-width="1"/>
+
+              <!-- Etichette Y -->
+              <text x="42" y="35" text-anchor="end" font-size="10" fill="#78716c" font-family="Inter">100%</text>
+              <text x="42" y="120" text-anchor="end" font-size="10" fill="#78716c" font-family="Inter">50%</text>
+              <text x="42" y="205" text-anchor="end" font-size="10" fill="#78716c" font-family="Inter">0%</text>
+
+              <!-- Etichette X -->
+              <text x="50" y="220" text-anchor="middle" font-size="10" fill="#78716c" font-family="Inter">Oggi</text>
+              <text x="130" y="220" text-anchor="middle" font-size="10" fill="#78716c" font-family="Inter">1 g</text>
+              <text x="210" y="220" text-anchor="middle" font-size="10" fill="#78716c" font-family="Inter">3 g</text>
+              <text x="290" y="220" text-anchor="middle" font-size="10" fill="#78716c" font-family="Inter">7 g</text>
+              <text x="370" y="220" text-anchor="middle" font-size="10" fill="#78716c" font-family="Inter">14 g</text>
+
+              <!-- Curva senza -->
+              <path d="M 50 30 Q 90 100 130 140 Q 180 175 230 188 Q 290 194 380 198"
+                    fill="none" stroke="#991b1b" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+
+              <!-- Curva con studium (ripetizioni a 1, 3, 7, 14 giorni) -->
+              <path d="M 50 30 Q 90 100 130 130 L 135 40 Q 160 80 210 105 L 215 35 Q 250 60 290 75 L 295 35 Q 335 50 380 55"
+                    fill="none" stroke="#1e40af" stroke-width="2.5" stroke-linecap="round"/>
+
+              <!-- Punti ripasso -->
+              <circle cx="135" cy="40" r="4" fill="#1e40af"/>
+              <circle cx="215" cy="35" r="4" fill="#1e40af"/>
+              <circle cx="295" cy="35" r="4" fill="#1e40af"/>
+
+              <!-- Etichette "ripasso" -->
+              <text x="135" y="22" text-anchor="middle" font-size="9" fill="#1e40af" font-family="JetBrains Mono" font-weight="500">↑ RIPASSO</text>
+              <text x="215" y="17" text-anchor="middle" font-size="9" fill="#1e40af" font-family="JetBrains Mono" font-weight="500">↑ RIPASSO</text>
+              <text x="295" y="17" text-anchor="middle" font-size="9" fill="#1e40af" font-family="JetBrains Mono" font-weight="500">↑ RIPASSO</text>
+            </svg>
+          </div>
+          <div class="chart-legend">
+            <div class="legend-item"><span class="legend-line legend-bad"></span><span>Studio tradizionale</span></div>
+            <div class="legend-item"><span class="legend-line legend-good"></span><span>Metodo Studium (ripetizione dilazionata)</span></div>
+          </div>
+          <p class="science-card-desc">
+            Ogni ripasso al momento giusto <em>riporta</em> la memoria al massimo. Il giorno dell'esame
+            tu ricordi il 90%, non il 10%.
+          </p>
+        </div>
+      </div>
+
+      <div class="science-footnote">
+        Fonte: Ebbinghaus, H. (1885). <em>Über das Gedächtnis</em>. Principio confermato da Roediger & Butler (2011), Karpicke & Blunt (2011), e centinaia di studi successivi.
       </div>
     </div>
   </section>
@@ -60,38 +257,44 @@
   <!-- MANIFESTO -->
   <section class="manifesto">
     <div class="container">
-      <div class="manifesto-grid">
-        <div class="manifesto-num">I.</div>
-        <div class="manifesto-text">
-          <h2>Il problema con gli altri.</h2>
+      <div class="section-overline">II · Manifesto</div>
+      <h2 class="section-title">Tre convinzioni <em>irrinunciabili</em>.</h2>
+
+      <div class="manifesto-item">
+        <div class="manifesto-label">Prima</div>
+        <div class="manifesto-body">
+          <h3>Il problema con le altre AI.</h3>
           <p>
-            Le AI generiche ti restituiscono piani generici: «studia il capitolo 3».
+            ChatGPT, Gemini, le altre ti restituiscono piani generici: «studia il capitolo 3».
             Non sanno cosa contiene quel capitolo, non sanno quanto pesa al tuo esame,
-            non sanno che hai un intercorso fra quattro giorni. Producono liste.
-            Non strategie.
+            non sanno che hai un intercorso fra quattro giorni, non sanno se vuoi prendere
+            trenta o soltanto passare. Producono liste. Non strategie.
           </p>
         </div>
       </div>
-      <div class="manifesto-grid">
-        <div class="manifesto-num">II.</div>
-        <div class="manifesto-text">
-          <h2>Cosa fa Studium.</h2>
+
+      <div class="manifesto-item">
+        <div class="manifesto-label">Seconda</div>
+        <div class="manifesto-body">
+          <h3>Cosa fa Studium, davvero.</h3>
           <p>
-            Studium legge davvero i tuoi materiali. Pesa i capitoli, stima le ore
-            reali, distribuisce lo studio secondo la curva dell'oblio di Ebbinghaus.
-            Conosce il sistema universitario italiano: CFU, intercorso, sessioni,
-            orale contro scritto. Parla come un tutor esigente, non come un chatbot.
+            Studium <em>legge</em> i tuoi materiali, uno per uno. Pesa i capitoli, stima le ore reali,
+            distribuisce lo studio secondo la curva dell'oblio di Ebbinghaus.
+            Conosce il sistema universitario italiano: CFU, sessioni, intercorso, scritto contro orale.
+            Parla come un tutor esigente, non come un chatbot compiacente.
           </p>
         </div>
       </div>
-      <div class="manifesto-grid">
-        <div class="manifesto-num">III.</div>
-        <div class="manifesto-text">
-          <h2>La promessa.</h2>
+
+      <div class="manifesto-item">
+        <div class="manifesto-label">Terza</div>
+        <div class="manifesto-body">
+          <h3>La promessa che facciamo.</h3>
           <p>
-            Un piano preciso, non generico. Fattibile, non ambizioso a vuoto.
-            Scientifico, non improvvisato. Se il tempo è poco, Studium te lo dice,
-            e propone cosa tagliare. Niente bugie pedagogiche.
+            Un piano preciso, non generico. Fattibile, non ambizioso a vuoto. Scientifico,
+            non improvvisato. Calibrato sul voto che vuoi, non su un obiettivo astratto.
+            Se il tempo è poco, Studium te lo dice e propone cosa tagliare.
+            Niente bugie pedagogiche.
           </p>
         </div>
       </div>
@@ -101,78 +304,87 @@
   <!-- METODO -->
   <section id="metodo" class="method">
     <div class="container">
-      <div class="section-overline">Capitolo II · Il metodo</div>
-      <h2 class="section-title">Quattro principi, nessun compromesso.</h2>
+      <div class="section-overline">III · Il metodo</div>
+      <h2 class="section-title">Quattro principi.<br><em>Zero compromessi.</em></h2>
 
       <div class="method-grid">
         <div class="method-card">
           <div class="method-num">01</div>
           <h3>Ripetizione dilazionata</h3>
-          <p>Ogni argomento viene rivisto a 1, 3, 7 e 14 giorni. Non è un'opinione: è come funziona la memoria a lungo termine.</p>
+          <p>Ogni argomento viene rivisto a 1, 3, 7 e 14 giorni. Non è un'opinione: è come funziona la memoria a lungo termine, dimostrato in laboratorio da oltre un secolo.</p>
+          <div class="method-proof">Ebbinghaus (1885), Cepeda et al. (2006)</div>
         </div>
         <div class="method-card">
           <div class="method-num">02</div>
           <h3>Richiamo attivo</h3>
-          <p>Ogni sessione ha un'autoverifica concreta. Non basta leggere: devi saperlo riprodurre a voce alta.</p>
+          <p>Ogni sessione ha un'autoverifica concreta. Non basta leggere: devi saperlo riprodurre a voce alta, per iscritto, sotto pressione. Rileggere non è studiare.</p>
+          <div class="method-proof">Karpicke &amp; Blunt (2011)</div>
         </div>
         <div class="method-card">
           <div class="method-num">03</div>
           <h3>Interleaving</h3>
-          <p>Alternare argomenti nella stessa giornata aumenta la ritenzione rispetto a studiare a blocchi monolitici.</p>
+          <p>Alternare argomenti nella stessa giornata aumenta la ritenzione rispetto a studiare a blocchi monolitici. Il cervello fatica di più — ed è proprio per questo che impara meglio.</p>
+          <div class="method-proof">Rohrer &amp; Taylor (2007)</div>
         </div>
         <div class="method-card">
           <div class="method-num">04</div>
           <h3>Calibrazione al reale</h3>
-          <p>Il piano si basa sul volume reale dei tuoi materiali, non su stime astratte. Ogni ora è giustificata.</p>
+          <p>Il piano si basa sul volume reale dei tuoi materiali, non su stime astratte. Ogni ora è giustificata. Se hai 300 pagine in 10 giorni, Studium te lo dice chiaramente.</p>
+          <div class="method-proof">Principio fondante di Studium</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- DIFFERENZA -->
-  <section id="differenza" class="compare">
+  <!-- CONFRONTO -->
+  <section id="confronto" class="compare">
     <div class="container">
-      <div class="section-overline">Capitolo III · Differenze</div>
-      <h2 class="section-title">Studium contro tutti gli altri.</h2>
+      <div class="section-overline">IV · Il confronto</div>
+      <h2 class="section-title">Studium <em>contro</em> tutti gli altri.</h2>
 
       <div class="vs-columns">
         <div class="vs-col vs-others">
           <div class="vs-col-head">
-            <span class="vs-col-label">AI GENERICHE</span>
-            <span class="vs-col-icon">✕</span>
+            <span class="vs-col-label">AI generiche</span>
+            <span class="vs-col-badge vs-badge-bad">Insufficiente</span>
           </div>
           <ul class="vs-list">
-            <li>Ignorano i materiali reali: rispondono al testo del prompt</li>
-            <li>Nessuna conoscenza del sistema accademico italiano</li>
-            <li>Applicano scienza cognitiva solo se esplicitamente richiesto</li>
-            <li>Ti rassicurano sempre, anche quando non ce la fai</li>
-            <li>Piano generico: «studia il capitolo»</li>
-            <li>Non considerano l'obiettivo del voto</li>
+            <li><strong>Ignorano i materiali reali</strong>: rispondono solo al testo del prompt</li>
+            <li><strong>Nessuna conoscenza</strong> del sistema accademico italiano</li>
+            <li><strong>Applicano scienza cognitiva</strong> solo se esplicitamente richiesto</li>
+            <li><strong>Ti rassicurano sempre</strong>, anche quando non ce la fai</li>
+            <li><strong>Piano generico</strong>: «studia il capitolo»</li>
+            <li><strong>Non considerano</strong> l'obiettivo di voto</li>
+            <li><strong>Nessun calendario</strong> con date reali</li>
           </ul>
         </div>
         <div class="vs-col vs-us">
           <div class="vs-col-head">
-            <span class="vs-col-label">STUDIUM</span>
-            <span class="vs-col-icon">✓</span>
+            <span class="vs-col-label">Studium</span>
+            <span class="vs-col-badge vs-badge-good">Chirurgico</span>
           </div>
           <ul class="vs-list">
-            <li>Legge PDF, slide, foto di appunti, testi scritti a mano</li>
-            <li>Conosce CFU, intercorso, sessioni, scritto vs orale</li>
-            <li>Spaced repetition, active recall e interleaving sempre attivi</li>
-            <li>Ti dice la verità: se è impossibile, propone un piano B</li>
-            <li>Piano specifico: «pagine 40-55, concetto X, obiettivo Y»</li>
-            <li>Adatta strategia e intensità al voto che vuoi ottenere</li>
+            <li><strong>Legge PDF, slide, foto</strong> di appunti, testi scritti a mano</li>
+            <li><strong>Conosce CFU, intercorso</strong>, sessioni, scritto vs orale</li>
+            <li><strong>Spaced repetition, active recall, interleaving</strong> sempre attivi</li>
+            <li><strong>Ti dice la verità</strong>: se è impossibile, propone un piano B</li>
+            <li><strong>Piano specifico</strong>: «pagine 40-55, concetto X, obiettivo Y»</li>
+            <li><strong>Strategia adatta al voto</strong>: passare ≠ prendere trenta</li>
+            <li><strong>Calendario giorno per giorno</strong> con ripassi distribuiti</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIAL / QUOTE -->
+  <!-- QUOTE -->
   <section class="quote-section">
     <div class="container">
+      <div class="quote-mark">“</div>
       <blockquote>
-        «Non serve studiare di più.<br>Serve studiare nel modo giusto,<br>al momento giusto.»
+        Non serve studiare di più.<br>
+        Serve studiare <em>nel modo giusto</em>,<br>
+        al momento giusto.
       </blockquote>
       <div class="quote-attribution">— Principio fondante di Studium</div>
     </div>
@@ -181,17 +393,17 @@
   <!-- FAQ -->
   <section id="faq" class="faq">
     <div class="container">
-      <div class="section-overline">Capitolo IV · Domande</div>
-      <h2 class="section-title">Quello che chiedono tutti.</h2>
+      <div class="section-overline">V · Domande</div>
+      <h2 class="section-title">Quello che <em>chiedono tutti</em>.</h2>
 
       <div class="faq-list">
         <details>
           <summary>È davvero gratuito?</summary>
-          <p>Sì. Completamente. Non c'è registrazione, non c'è carta di credito, non raccogliamo dati personali. I materiali che carichi non vengono salvati da nessuna parte: vengono analizzati e scartati.</p>
+          <p>Sì, completamente. Non c'è registrazione, non c'è carta di credito, non raccogliamo dati personali. I materiali che carichi non vengono salvati da nessuna parte: vengono analizzati e scartati.</p>
         </details>
         <details>
           <summary>Quali file posso caricare?</summary>
-          <p>PDF (slide, dispense, libri), immagini (foto di appunti, pagine di libri), testi semplici. Puoi anche scrivere direttamente gli argomenti se non hai file.</p>
+          <p>PDF (slide, dispense, libri), immagini (foto di appunti, pagine di libri), testi semplici. Se hai PDF troppo grandi trovi un pulsante nell'app per comprimerli gratis. Puoi anche scrivere direttamente gli argomenti senza caricare nulla.</p>
         </details>
         <details>
           <summary>Quanto tempo ci mette a generare il piano?</summary>
@@ -199,15 +411,19 @@
         </details>
         <details>
           <summary>Funziona anche per il liceo o per concorsi?</summary>
-          <p>Sì. È pensato per l'università italiana ma il metodo si adatta a qualunque studio strutturato: maturità, concorsi pubblici, certificazioni.</p>
+          <p>Sì. È pensato per l'università italiana ma il metodo si adatta a qualunque studio strutturato: maturità, concorsi pubblici, certificazioni, patenti.</p>
         </details>
         <details>
           <summary>E se sono già indietro con lo studio?</summary>
-          <p>È il caso più frequente, e quello in cui Studium dà il meglio. Ti dirà onestamente se è recuperabile e con quale strategia. A volte la risposta sarà dura.</p>
+          <p>È il caso più frequente, e quello in cui Studium dà il meglio. Ti dirà onestamente se è recuperabile e con quale strategia. A volte la risposta sarà dura — e sarà la cosa più utile che ricevi.</p>
+        </details>
+        <details>
+          <summary>Posso modificare un piano già generato?</summary>
+          <p>Sì. Nella homepage clicca "Ho già un piano, lo modifico", carichi il PDF che avevi scaricato e dici cosa è cambiato (esame spostato, giorni persi, argomenti aggiunti). Studium rigenera il piano aggiornato.</p>
         </details>
         <details>
           <summary>Posso salvare il piano?</summary>
-          <p>Certo: puoi scaricarlo come PDF, stamparlo, copiarlo nel tuo calendario. Il piano è tuo.</p>
+          <p>Certo: il piano viene scaricato come PDF impaginato, puoi stamparlo, portarlo con te, copiarlo nel tuo calendario. Il piano è tuo.</p>
         </details>
       </div>
     </div>
@@ -216,40 +432,69 @@
   <!-- FINAL CTA -->
   <section class="final-cta">
     <div class="container">
-      <h2>Pronto a studiare davvero?</h2>
-      <p>Due minuti per caricare tutto. Un piano di studio vero in cambio.</p>
-      <button class="btn btn-primary btn-large" onclick="showApp()">Inizia ora →</button>
+      <div class="final-cta-inner">
+        <h2>Pronto a studiare <em>sul serio</em>?</h2>
+        <p>Due minuti per caricare tutto. Un piano di studio vero in cambio. Senza registrazione.</p>
+        <div class="final-cta-actions">
+          <button class="btn btn-primary btn-large" onclick="showApp()">
+            <span>Crea il mio piano</span>
+            <span class="btn-arrow">→</span>
+          </button>
+          <button class="btn btn-secondary" onclick="showModify()">
+            <span>Modifica un piano esistente</span>
+          </button>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <div class="footer-col">
-        <div class="footer-title">Studium</div>
-        <div class="footer-sub">Pianificatore accademico scientifico</div>
-      </div>
-      <div class="footer-col footer-col-center">
-        <div class="footer-credits">
-          Creato da <strong>Domenico Tortoriello</strong><br>
-          <span>Studente di Ingegneria Elettrica</span><br>
-          <span>Università Federico II · Napoli</span>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <div class="footer-logo">Studium</div>
+          <div class="footer-tagline">Il pianificatore di studio scientifico per l'università italiana.</div>
+        </div>
+        <div class="footer-credits-block">
+          <div class="footer-label">Creato da</div>
+          <div class="footer-author">Domenico Tortoriello</div>
+          <div class="footer-author-sub">Ingegneria Elettrica · Università Federico II · Napoli</div>
+        </div>
+        <div class="footer-tech">
+          <div class="footer-label">Intelligenza</div>
+          <div class="footer-tech-name">Claude</div>
+          <div class="footer-author-sub">Anthropic · MMXXVI</div>
         </div>
       </div>
-      <div class="footer-col footer-col-right">
-        <div class="footer-sub">Propulso da Claude</div>
-        <div class="footer-sub">Anthropic · MMXXVI</div>
+      <div class="footer-bottom">
+        <div>© 2026 Studium · Tutti i diritti riservati</div>
+        <div>Made with rigor in Napoli</div>
       </div>
     </div>
   </footer>
 </div>
 
-<!-- ============ APP ============ -->
+<!-- ============ APP — CREATORE DI PIANO ============ -->
 <div id="app" class="view">
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-left">
+        <span class="topbar-label">Un progetto di</span>
+        <strong>Domenico Tortoriello</strong>
+        <span class="topbar-sep">·</span>
+        <span class="topbar-detail">Ingegneria Elettrica · Federico II</span>
+      </div>
+    </div>
+  </div>
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand" onclick="showLanding()" style="cursor:pointer">
-        <span class="brand-name">Studium</span>
-        <span class="brand-tag">MMXXVI</span>
+        <span class="brand-mark">S</span>
+        <div>
+          <div class="brand-name">Studium</div>
+          <div class="brand-sub">Creatore di piano</div>
+        </div>
       </div>
       <nav class="site-nav">
         <a href="#" onclick="showLanding(); return false;">← Torna alla home</a>
@@ -257,7 +502,6 @@
     </div>
   </header>
 
-  <!-- Step indicator -->
   <div class="step-bar">
     <div class="container step-bar-inner">
       <div class="step" data-step="1"><span class="step-num">1</span><span>Materiali</span></div>
@@ -272,25 +516,21 @@
 
   <main class="container main-content">
 
-    <!-- STEP 1: FILES + TESTO MANUALE -->
     <section id="step-1" class="step-panel active">
       <div class="step-header">
         <div class="section-overline">Capitolo I</div>
         <h2 class="section-title">I tuoi materiali.</h2>
         <p class="step-intro">
-          Carica tutto ciò che dovrai studiare: slide del professore, dispense,
-          foto degli appunti, libri in PDF. Oppure scrivi direttamente gli argomenti
-          se non hai materiali digitali.
+          Carica tutto ciò che dovrai studiare: slide, dispense, foto degli appunti, libri in PDF.
+          Oppure scrivi direttamente gli argomenti. O entrambi.
         </p>
       </div>
 
-      <!-- Sotto-tab: file o testo -->
       <div class="tabs">
         <button class="tab-btn active" data-tab="files" onclick="switchTab('files')">Carica file</button>
         <button class="tab-btn" data-tab="text" onclick="switchTab('text')">Scrivi argomenti</button>
       </div>
 
-      <!-- TAB FILE -->
       <div id="tab-files" class="tab-panel active">
         <div class="dropzone" id="dropzone">
           <div class="dropzone-icon">↑</div>
@@ -300,12 +540,11 @@
         </div>
         <div id="file-list" class="file-list"></div>
 
-        <!-- Box compressione PDF -->
         <div class="compress-box">
           <div class="compress-box-head">
             <div>
               <div class="compress-box-title">File troppo grande? Comprimilo.</div>
-              <div class="compress-box-sub">I libri PDF pesano fino a 50MB. Comprimendoli diventano 2-3MB in pochi secondi, senza perdere qualità di lettura. Le immagini invece vengono compresse automaticamente da Studium.</div>
+              <div class="compress-box-sub">I libri PDF pesano fino a 50MB. Comprimendoli diventano 2-3MB in pochi secondi, senza perdere qualità di lettura.</div>
             </div>
             <a href="https://www.ilovepdf.com/it/comprimere-pdf" target="_blank" rel="noopener" class="btn-compress">
               <span>Comprimi PDF</span>
@@ -313,22 +552,21 @@
             </a>
           </div>
           <details class="compress-guide">
-            <summary>Come si comprime un PDF? (guida in 4 passi)</summary>
+            <summary>Come si comprime un PDF? Guida in 4 passi</summary>
             <ol class="compress-steps">
-              <li><strong>Clicca "Comprimi PDF"</strong> qui sopra. Si apre il sito ilovepdf.com in una nuova scheda.</li>
-              <li><strong>Trascina il tuo PDF</strong> dentro il rettangolo rosso al centro del sito, oppure clicca "Seleziona file PDF".</li>
-              <li><strong>Scegli "Compressione consigliata"</strong> (è quella di default) e clicca il pulsante rosso "Comprimi PDF" in basso a destra.</li>
-              <li><strong>Scarica il file compresso</strong> e caricalo qui su Studium. Normalmente passa da 30MB a 2-3MB.</li>
+              <li><strong>Clicca "Comprimi PDF"</strong> qui sopra. Si apre ilovepdf.com.</li>
+              <li><strong>Trascina il PDF</strong> nel rettangolo rosso al centro.</li>
+              <li><strong>Clicca "Comprimi PDF"</strong> (pulsante rosso in basso a destra).</li>
+              <li><strong>Scarica il file compresso</strong> e caricalo qui su Studium.</li>
             </ol>
-            <p class="compress-note">Totalmente gratuito, non serve registrarsi. Il PDF rimane privato, non viene condiviso.</p>
+            <p class="compress-note">Gratuito. Nessuna registrazione. Il PDF rimane privato.</p>
           </details>
         </div>
       </div>
 
-      <!-- TAB TESTO -->
       <div id="tab-text" class="tab-panel">
         <label class="field-label">Scrivi qui gli argomenti che dovrai studiare</label>
-        <textarea id="manual-topics" rows="10" placeholder="Esempio:
+        <textarea id="manual-topics" rows="12" placeholder="Esempio:
 
 CAPITOLO 1 — Analisi matematica
 - Limiti di funzione
@@ -341,7 +579,7 @@ CAPITOLO 2 — Integrali
 - Integrali definiti
 
 ..."></textarea>
-        <p class="step-hint" style="margin-top:0.5rem">Più sei specifico, più il piano sarà preciso. Elenca capitoli, argomenti, paragrafi.</p>
+        <p class="step-hint" style="margin-top:0.75rem">Più sei specifico, più il piano sarà preciso.</p>
       </div>
 
       <div class="step-actions">
@@ -350,19 +588,16 @@ CAPITOLO 2 — Integrali
       </div>
     </section>
 
-    <!-- STEP 2: EXAMS -->
     <section id="step-2" class="step-panel">
       <div class="step-header">
         <div class="section-overline">Capitolo II</div>
         <h2 class="section-title">Gli esami.</h2>
         <p class="step-intro">
-          Per ogni esame specifica materia, data, modalità, il tuo livello di
-          preparazione attuale e l'obiettivo che ti poni. Ogni dettaglio cambia il piano.
+          Per ogni esame specifica materia, data, modalità, preparazione attuale e obiettivo di voto.
         </p>
       </div>
 
       <div id="exams-list" class="exams-list"></div>
-
       <button class="btn btn-ghost btn-add" onclick="addExam()">+ Aggiungi esame</button>
 
       <div class="step-actions">
@@ -371,15 +606,11 @@ CAPITOLO 2 — Integrali
       </div>
     </section>
 
-    <!-- STEP 3: PREFERENCES -->
     <section id="step-3" class="step-panel">
       <div class="step-header">
         <div class="section-overline">Capitolo III</div>
         <h2 class="section-title">Il tuo ritmo.</h2>
-        <p class="step-intro">
-          Meglio un piano fattibile al cento per cento che uno ambizioso
-          abbandonato dopo tre giorni. Sii realista.
-        </p>
+        <p class="step-intro">Meglio un piano fattibile al cento per cento che uno ambizioso abbandonato dopo tre giorni.</p>
       </div>
 
       <div class="prefs-card">
@@ -397,7 +628,7 @@ CAPITOLO 2 — Integrali
             <input type="range" id="pref-days" min="2" max="7" value="6">
           </div>
           <div class="prefs-field">
-            <label>Giorno di riposo preferito</label>
+            <label>Giorno di riposo</label>
             <select id="pref-rest">
               <option value="domenica">Domenica</option>
               <option value="lunedì">Lunedì</option>
@@ -410,7 +641,7 @@ CAPITOLO 2 — Integrali
             </select>
           </div>
           <div class="prefs-field">
-            <label>Ambito di studio</label>
+            <label>Ambito</label>
             <select id="pref-context">
               <option value="università">Università</option>
               <option value="liceo">Liceo / maturità</option>
@@ -420,7 +651,7 @@ CAPITOLO 2 — Integrali
             </select>
           </div>
           <div class="prefs-field">
-            <label>Livello di stress attuale</label>
+            <label>Livello di stress</label>
             <select id="pref-stress">
               <option value="rilassato">Rilassato, c'è tempo</option>
               <option value="normale">Normale</option>
@@ -431,7 +662,7 @@ CAPITOLO 2 — Integrali
         </div>
         <div class="prefs-field prefs-full">
           <label>Note e vincoli</label>
-          <textarea id="pref-notes" rows="4" placeholder="Lavoro il martedì pomeriggio, tirocinio il giovedì, difficoltà con la matematica, tendo a procrastinare..."></textarea>
+          <textarea id="pref-notes" rows="4" placeholder="Lavoro il martedì, tirocinio il giovedì, difficoltà con la matematica..."></textarea>
         </div>
       </div>
 
@@ -440,12 +671,11 @@ CAPITOLO 2 — Integrali
       <div class="step-actions">
         <button class="btn btn-text" onclick="goToStep(2)">← Indietro</button>
         <button class="btn btn-primary btn-large" id="btn-generate" onclick="generatePlan()">
-          <span class="btn-text-content">✦ Genera il piano</span>
+          <span>✦ Genera il piano</span>
         </button>
       </div>
     </section>
 
-    <!-- STEP 4: PLAN -->
     <section id="step-4" class="step-panel">
       <div id="loading-state" style="display:none">
         <div class="loading-container">
@@ -456,23 +686,102 @@ CAPITOLO 2 — Integrali
       </div>
       <div id="plan-content" style="display:none"></div>
     </section>
-
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer footer-compact">
     <div class="container footer-inner">
-      <div class="footer-col">
-        <div class="footer-title">Studium</div>
-        <div class="footer-sub">Pianificatore accademico</div>
+      <div class="footer-bottom">
+        <div><strong>Studium</strong> · Creato da Domenico Tortoriello · Ingegneria Elettrica, Federico II</div>
+        <div>Propulso da Claude</div>
       </div>
-      <div class="footer-col footer-col-center">
-        <div class="footer-credits">
-          Creato da <strong>Domenico Tortoriello</strong><br>
-          <span>Ingegneria Elettrica · Federico II</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ============ MODIFY — modifica piano esistente ============ -->
+<div id="modify" class="view">
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-left">
+        <span class="topbar-label">Un progetto di</span>
+        <strong>Domenico Tortoriello</strong>
+        <span class="topbar-sep">·</span>
+        <span class="topbar-detail">Ingegneria Elettrica · Federico II</span>
+      </div>
+    </div>
+  </div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand" onclick="showLanding()" style="cursor:pointer">
+        <span class="brand-mark">S</span>
+        <div>
+          <div class="brand-name">Studium</div>
+          <div class="brand-sub">Modifica piano esistente</div>
         </div>
       </div>
-      <div class="footer-col footer-col-right">
-        <div class="footer-sub">Propulso da Claude</div>
+      <nav class="site-nav">
+        <a href="#" onclick="showLanding(); return false;">← Torna alla home</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <div class="step-header">
+      <div class="section-overline">Aggiornamento</div>
+      <h2 class="section-title">Rigenera il tuo piano.</h2>
+      <p class="step-intro">
+        Carica il PDF del piano che avevi generato con Studium e dicci cosa è cambiato.
+        Ti rigeneriamo un piano aggiornato che tiene conto di quanto hai già fatto e delle novità.
+      </p>
+    </div>
+
+    <div class="modify-card">
+      <label class="field-label">PDF del piano precedente</label>
+      <div class="dropzone" id="modify-dropzone">
+        <div class="dropzone-icon">↑</div>
+        <p class="dropzone-text">Trascina qui il PDF del piano, oppure clicca</p>
+        <p class="dropzone-meta">Solo PDF · max 3MB</p>
+        <input type="file" id="modify-file-input" accept=".pdf" style="display:none">
+      </div>
+      <div id="modify-file-info"></div>
+    </div>
+
+    <div class="modify-card" style="margin-top:1.5rem">
+      <label class="field-label">Cosa è cambiato? Cosa devi aggiornare?</label>
+      <textarea id="modify-changes" rows="8" placeholder="Esempi:
+- L'esame è stato spostato dal 15 al 22 maggio
+- Sono indietro di 3 giorni, non ho studiato da lunedì
+- Il professore ha aggiunto il capitolo 7
+- Mi sento pronto sul capitolo 2, salta i ripassi
+- Devo aumentare a 6 ore al giorno perché ora ho più tempo..."></textarea>
+      <p class="step-hint" style="margin-top:0.75rem">Più dettagli dai, più preciso sarà il nuovo piano.</p>
+    </div>
+
+    <div id="modify-error" class="error-box" style="display:none; margin-top:1.5rem"></div>
+
+    <div class="step-actions">
+      <button class="btn btn-text" onclick="showLanding()">← Indietro</button>
+      <button class="btn btn-primary btn-large" id="btn-regenerate" onclick="regeneratePlan()">
+        <span>✦ Rigenera il piano</span>
+      </button>
+    </div>
+
+    <div id="modify-loading" style="display:none; margin-top:3rem">
+      <div class="loading-container">
+        <div class="loader"></div>
+        <p class="loading-title">Studium sta ricalibrando.</p>
+        <p class="loading-text" id="modify-loading-stage">Lettura del piano precedente…</p>
+      </div>
+    </div>
+
+    <div id="modify-plan-content" style="display:none; margin-top:3rem"></div>
+  </main>
+
+  <footer class="site-footer footer-compact">
+    <div class="container footer-inner">
+      <div class="footer-bottom">
+        <div><strong>Studium</strong> · Creato da Domenico Tortoriello · Ingegneria Elettrica, Federico II</div>
+        <div>Propulso da Claude</div>
       </div>
     </div>
   </footer>
